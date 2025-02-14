@@ -1,6 +1,6 @@
 import { number } from "zod";
 
-enum acaoEnum  {
+export enum acaoEnum  {
     INSERIR = 'INSERIR',
     DELETAR = 'DELETAR',
     ATUALIZAR = 'ATUALIZAR'
