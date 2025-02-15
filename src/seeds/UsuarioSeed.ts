@@ -21,3 +21,15 @@ export const usuario3:tipoUsuario = {
     email: fakerPT_BR.internet.email({firstName:nome1.split(' ')[0]}),
     senha: nome1.split(' ')[0]+"123$%"
 }
+
+export async function gerarUsuario() {
+    const nome = fakerPT_BR.person.fullName()
+    const usuario4:tipoUsuario = {
+        nome: nome,
+        email: fakerPT_BR.internet.email({firstName:nome1.split(' ')[0]}),
+        senha: nome1.split(' ')[0]+"123$%"
+    }
+    return usuario4
+
+}
+    
