@@ -1,35 +1,29 @@
 import { tipoUsuario } from "../models/UsuariosModels";
 import { fakerPT_BR }from '@faker-js/faker';
+import { listarUsuarios } from "../services/UsuarioService";
+import { resolve } from "path";
+import { rejects } from "assert";
+import { error } from "console";
 
-const nome1 = fakerPT_BR.person.fullName()
-const nome2 = fakerPT_BR.person.fullName()
-const nome3 = fakerPT_BR.person.fullName()
-export const usuario1:tipoUsuario = {
-    nome: nome1,
-    email: fakerPT_BR.internet.email({firstName:nome1.split(' ')[0]}),
-    senha: nome1.split(' ')[0]+"123$%"
-}
-
-export const usuario2:tipoUsuario = {
-    nome: nome2,
-    email: fakerPT_BR.internet.email({firstName:nome1.split(' ')[0]}),
-    senha: nome1.split(' ')[0]+"123$%"
-}
-
-export const usuario3:tipoUsuario = {
-    nome: nome3,
-    email: fakerPT_BR.internet.email({firstName:nome1.split(' ')[0]}),
-    senha: nome1.split(' ')[0]+"123$%"
+export const marco: tipoUsuario = {
+    nome:"Marco",
+    email:"marco@gmail.com",
+    senha:"Marco123$%"
 }
 
 export async function gerarUsuario() {
+    
     const nome = fakerPT_BR.person.fullName()
+    const ultimoNome = nome.split(' ')
+    //console.log(ultimoNome[ultimoNome.length-1])
     const usuario4:tipoUsuario = {
         nome: nome,
-        email: fakerPT_BR.internet.email({firstName:nome1.split(' ')[0]}),
-        senha: nome1.split(' ')[0]+"123$%"
+        email: fakerPT_BR.internet.email({firstName:nome.split(' ')[0],lastName:ultimoNome[ultimoNome.length -1] }),
+        senha: nome.split(' ')[0]+"123$%"
+        
     }
     return usuario4
+    
 
 }
     

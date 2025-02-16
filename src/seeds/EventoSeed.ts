@@ -1,19 +1,11 @@
 import { Evento, tipoEvento } from "../models/EventosModels";
-
-export const Evento1:tipoEvento = {
-    nome:"Um Evento muito Foda",
-    data: new Date(),
-    usuario: 1
-} 
-
-export const Evento2:tipoEvento = {
-    nome:"Um Evento eventual",
-    data: new Date(),
-    usuario: 2
-} 
-
-export const Evento3:tipoEvento = {
-    nome:"Um eventual Evento",
-    data: new Date(),
-    usuario: 3
-} 
+import { fakerPT_BR }from '@faker-js/faker';
+export async function gerarEvento(id:number) {
+    const evento ={
+        nome: fakerPT_BR.lorem.sentence({min:1, max:3}),
+        data: new Date(),
+        usuario: id
+    }
+    return evento
+    
+}

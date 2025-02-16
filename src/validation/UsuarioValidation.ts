@@ -1,7 +1,8 @@
 import { tipoUsuario, Usuario } from "../models/UsuariosModels";
 
+// valida usuario com safeParse
 export async function validarUsuario(usuario:tipoUsuario) {
-    const valido = Usuario.safeParse({usuario})
+    const valido = Usuario.safeParse(usuario)
     if(!valido.success){
         console.log(`Usuário não validado: ${valido.error.message}`)
         return false

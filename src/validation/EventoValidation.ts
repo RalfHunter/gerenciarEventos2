@@ -1,7 +1,8 @@
 import { Evento, tipoEvento } from "../models/EventosModels";
 
+// valida evento com safeParse
 export async function validarEvento(evento:tipoEvento) {
-    const valido = Evento.safeParse({evento})
+    const valido = Evento.safeParse(evento)
     if(!valido.success){
         console.log(`Evento não validado: ${valido.error.message}`)
         return false
