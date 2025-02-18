@@ -1,6 +1,6 @@
 import { questionAsync } from "../models/AsyncQuestion"
 import { validarEvento } from "../validation/EventoValidation"
-import { deletarEvento, inserirEvento, listarEventoPorId, updateEvento } from "../services/EventoService"
+import { converterData, deletarEvento, inserirEvento, listarEventoPorId, updateEvento } from "../services/EventoService"
 import { listarEventos } from "../services/EventoService"
 import { listarUsuarios } from "../services/UsuarioService"
 import { gerarEvento } from "../seeds/EventoSeed"
@@ -33,7 +33,7 @@ export async function criarEventosDefault() {
 export async function criarEvento(id:number){
     const eventoDados:tipoEvento = {
         nome: await questionAsync("Nome: ") || "Default",
-        data: new Date(await questionAsync("Data (Opcional):") || new Date()),
+        data: await converterData(new Date(await questionAsync("Data(Opcional): ")|| new Date())),
         usuario: id
     }
     //console.log(eventoDados)
@@ -78,7 +78,7 @@ export async function atualizarEvento(idUsuario:number){
 
     const eventoAlterado:tipoEvento = {
         nome: await questionAsync("Nome: "),
-        data: new Date(await questionAsync("Data (Opcional):") || new Date()),
+        data: await converterData(new Date(await questionAsync("Data(Opcional): ")|| new Date())),
         usuario: idUsuario
     }
     const evento = await validarEvento(eventoAlterado)

@@ -11,8 +11,8 @@ export async function criarTabelaEvento() {
     const query = `
     CREATE TABLE IF NOT EXISTS eventos(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT,
-    data DATE NOT NULL,
+    nome TEXT NOT NULL,
+    data TEXT NOT NULL,
     usuario_id INTEGER,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
     )
@@ -28,7 +28,7 @@ export async function criarTabelaEvento() {
     })
 }
 
-export async function inserirEvento(nome:string, data: Date, usuarioId:number) {
+export async function inserirEvento(nome:string, data: string, usuarioId:number) {
     const query = `INSERT INTO eventos(nome, data, usuario_id)
     VALUES (?, ?, ?)`
 
@@ -92,7 +92,7 @@ export async function deletarEvento(id:number) {
     })
 }
 
-export async function updateEvento(id:number, novoNome: string, novaData: Date) {
+export async function updateEvento(id:number, novoNome: string, novaData: string) {
     const query = `UPDATE eventos SET nome = ?, data = ? WHERE id = ?`
 
     return new Promise((resolve, reject) =>{
@@ -113,3 +113,12 @@ export async function updateEvento(id:number, novoNome: string, novaData: Date) 
     
 }
 
+export async function converterData(Data: any): Promise <string> {
+    try{
+        const novaData = Data.toLocaleDateString()
+        return novaData
+    }catch{
+        console.log(`Formato de data inválido`)
+        return ''
+    }
+}
